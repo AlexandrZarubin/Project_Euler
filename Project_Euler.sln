@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "001_Multiples_of_3_or_5", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "002_Even_Fibonacci_Numbers", "002_Even_Fibonacci_Numbers\002_Even_Fibonacci_Numbers.vcxproj", "{BDD44709-AC38-4E48-97D5-548DE082C6BA}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "003_Largest_Prime_Factor", "003_Largest_Prime_Factor\003_Largest_Prime_Factor.vcxproj", "{78F3E458-3D82-4F8F-AFD9-9629BB524934}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{BDD44709-AC38-4E48-97D5-548DE082C6BA}.Release|x64.Build.0 = Release|x64
 		{BDD44709-AC38-4E48-97D5-548DE082C6BA}.Release|x86.ActiveCfg = Release|Win32
 		{BDD44709-AC38-4E48-97D5-548DE082C6BA}.Release|x86.Build.0 = Release|Win32
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Debug|x64.ActiveCfg = Debug|x64
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Debug|x64.Build.0 = Debug|x64
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Debug|x86.ActiveCfg = Debug|Win32
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Debug|x86.Build.0 = Debug|Win32
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Release|x64.ActiveCfg = Release|x64
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Release|x64.Build.0 = Release|x64
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Release|x86.ActiveCfg = Release|Win32
+		{78F3E458-3D82-4F8F-AFD9-9629BB524934}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
