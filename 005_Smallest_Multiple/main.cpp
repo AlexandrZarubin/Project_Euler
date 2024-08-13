@@ -22,7 +22,6 @@ int is_Number(int range)//MyTask/
 		
 	}
 }
-
 long long get_NOD(long long num1, long long num2)
 /*	функция определяет найбольший общий делитель двух чисел			nod 645 and 681
 	параметры num1		- число 1									645/381=1(294)
