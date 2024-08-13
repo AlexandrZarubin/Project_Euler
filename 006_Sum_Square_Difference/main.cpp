@@ -33,10 +33,11 @@ int main()
 #endif // MyTask
 
 #ifdef TaskOnline
-	int answ;										//
-	int num = 100;									//
-	int sum_sq;										//
-	int sum_num;									//
+	//https://eulerproject.ru/euler-6/
+	int answ;										// ответ
+	int num = 100;									// 
+	int sum_sq;										// сумма квадратов
+	int sum_num;									// сумма чисел
 	sum_num = (num * num + num) / 2;
 	sum_sq = (num * (num + 1) * (2 * num + 1)) / 6;
 	answ = sum_num * sum_num - sum_sq;
