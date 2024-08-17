@@ -24,7 +24,7 @@ bool is_prime(char prime_ar[], int num)
 	*/
 	int div_max = sqrt(num) + 1;							// выносим вычисление квадратного корня из цикла for
 
-	for (size_t div = 2; div < div_max; div++)				// чтоб он не вычисляллся каждую итерацию цикла
+	for (int div = 2; div < div_max; div++)				// чтоб он не вычисляллся каждую итерацию цикла
 	{
 		if (prime_ar[div] && !(num % div))					// пропускаем составные делители и срабатываем при num % i == 0
 		{
@@ -34,8 +34,86 @@ bool is_prime(char prime_ar[], int num)
 	return true;
 }
 
+bool is_composite(char comp_arr[], int num)
+{
+	/*
+		функция принимает число и возращает true - если число составное
+		параметр:	com_arr[]					- массив с ранее вычисленными составными числами
+					com_arr[num] = 0			- число простое
+					com_arr[num] = 1			- число составное
+					num							- проверяемое число
+		return:		true						-если число составное
+	*/
+	int div_max = sqrt(num) + 1;							// выносим вычисление квадратного корня из цикла for
+
+	for (int div = 2; div < div_max; div++)					// чтоб он не вычисляллся каждую итерацию цикла
+	{
+		if (!comp_arr[div] && !(num % div) && (num != 2))	//пропускаем составные делители и срабатываем при num%i=0, пропускаем число 2
+		{
+			return true;
+		}
+	}
+	return false;
+}
+int note_composite(char comp_arr[], int step, int start, int finish)
+{
+	/*
+		функция отмечает составные числа в массиве
+		параметр:	com_arr[]					- массив с ранее вычисленными составными числами
+					com_arr[num] = 0			- число простое
+					com_arr[num] = 1			- число составное
+					step						- простое число, служит шагом
+					start						- начальный игдекс в массиве
+					finish						- конечный индекс
+		return:									-количество отмеченных составных чисел
+	*/
+	int cnt = 0;												//
+	int shift = (start % step == 0) ? 0 : (step - (start % step));//смещение индекса start
+	start += shift;
+
+	for (int i = start; i < finish; i+=step)
+	{
+		if (!comp_arr[i])										// если еще не отмечено
+		{
+			comp_arr[i] = 1;									//отмечаем составные числа
+			cnt++;												// и счиатем их
+		}
+	}
+	return cnt;
+}
+int get_prime(char comp_arr[], int number, int start, int finish)
+{
+	/*
+		функция считает кол-во простых чисел и возращает значение простого числа из отрезка массива по его номеру
+		параметр:	com_arr[]					- массив с ранее вычисленными составными числами
+					com_arr[num] = 0			- число простое
+					com_arr[num] = 1			- число составное
+					number						- порядковый номер простого числа
+					start						- начальный место в массиве
+					finish						- конечный место в массиве
+		return:									-значение простого числа
+	*/
+	int answ = 0;
+	int cnt = 0;
+
+	for (int  i = start; i < finish; i++)		// перебор массива
+	{
+		if (!comp_arr[i]) 
+		{										
+			cnt++;								// считаем простые числа
+		}
+		if (cnt == number)						// когда дошли до искомого счета
+		{
+			answ = i;							// индекс в массиве является искомым числом
+			break;
+		}
+	}
+
+	return answ;
+}
 //#define MyTask//0.026
-#define TaskOnline//0.007
+//#define TaskOnline//0.007
+#define TaskOnline2//
 int main()
 {
 
@@ -93,6 +171,50 @@ int main()
 	cout << "Answ:\t" << num << "\truntime: " << time_spend << endl;
 #endif // TaskOnline
 
+#ifdef TaskOnline2
+	static char composite_arr[LEN_ARR] = { 0 };
+	int cnt_prime = 0;
+	int past_cnt_prime;
+	int cnt_comp = 0;
+	int answ;
+	int start = 0;
+	int finish = 1000;
+	int step_max;
+	for (int num = 2; num < 1000; num++)
+	{
+		if (is_composite(composite_arr, num))
+		{
+			composite_arr[num] = 1;
+			cnt_comp++;
+		}
+	}
+	
+	cnt_prime = 998 - cnt_comp;
+
+	while (cnt_prime<10001)
+	{
+		past_cnt_prime = cnt_prime;
+		start += 1000;
+		finish += 1000;
+		cnt_comp = 0;
+		step_max = finish / 2;
+
+		for (int  step = 2; step < step_max; step++)
+		{
+			if (!composite_arr[step])
+			{
+				cnt_comp += note_composite(composite_arr, step, start, finish);
+			}
+		}
+			cnt_prime += (1000 - cnt_comp);
+	}
+	answ = get_prime(composite_arr, 10001 - past_cnt_prime, start, finish);
+
+	clock_t end = clock();
+	time_spend = (double)(end - begin) / CLOCKS_PER_SEC;
+
+	cout << "Answ:\t" << answ << "\truntime: " << time_spend << endl;
+#endif // TaskOnline2
 
 
 	return 0;
