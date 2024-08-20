@@ -113,7 +113,7 @@ int get_prime(char comp_arr[], int number, int start, int finish)
 }
 //#define MyTask//0.026
 //#define TaskOnline//0.007
-#define TaskOnline2//
+#define TaskOnline2//0.008 //решета Эратосфена
 int main()
 {
 
@@ -172,15 +172,15 @@ int main()
 #endif // TaskOnline
 
 #ifdef TaskOnline2
-	static char composite_arr[LEN_ARR] = { 0 };
-	int cnt_prime = 0;
-	int past_cnt_prime;
-	int cnt_comp = 0;
-	int answ;
-	int start = 0;
-	int finish = 1000;
-	int step_max;
-	for (int num = 2; num < 1000; num++)
+	static char composite_arr[LEN_ARR] = { 0 };			// массив[составное число] = 1 static писать обязательно
+	int cnt_prime = 0;									// счетчик кол-во простых чисел в массиве
+	int past_cnt_prime;									// сохраняем значение счетчика предыдыщих итераций
+	int cnt_comp = 0;									//счетчик кол-во составных чисел
+	int answ;											//
+	int start = 0;										//добавляем занчение в массиве по 1000
+	int finish = 1000;									//
+	int step_max;										//
+	for (int num = 2; num < 1000; num++)				//определяем статус первых 1000 чисел
 	{
 		if (is_composite(composite_arr, num))
 		{
@@ -189,25 +189,26 @@ int main()
 		}
 	}
 	
-	cnt_prime = 998 - cnt_comp;
+	cnt_prime = 998 - cnt_comp;							//от 2 до 999-> xbctk
 
 	while (cnt_prime<10001)
 	{
-		past_cnt_prime = cnt_prime;
-		start += 1000;
+		past_cnt_prime = cnt_prime;						//сохраняем значение счетчика предыщих итераций
+		start += 1000;									//добавляем значение в массиве по 1000
 		finish += 1000;
 		cnt_comp = 0;
-		step_max = finish / 2;
+		step_max = finish / 2;							//максимальное значение шага
 
 		for (int  step = 2; step < step_max; step++)
 		{
-			if (!composite_arr[step])
+			if (!composite_arr[step])					//числа, делимые на step? в массиве как составное
 			{
 				cnt_comp += note_composite(composite_arr, step, start, finish);
 			}
 		}
-			cnt_prime += (1000 - cnt_comp);
+			cnt_prime += (1000 - cnt_comp);				//вычитаем составные числа, осталные - простые
 	}
+	//10001 - предыдщие значения счетчика = порядковый номер искомого числа в отрезке массива
 	answ = get_prime(composite_arr, 10001 - past_cnt_prime, start, finish);
 
 	clock_t end = clock();
