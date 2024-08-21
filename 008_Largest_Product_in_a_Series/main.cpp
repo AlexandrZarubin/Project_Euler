@@ -55,7 +55,7 @@ int Sum(const vector<int>& vec, const int Size, int start, int end)
 #define LEN_SERIES 13
 //#define myTask		//0.006055	/0.005
 //#define TaskOnline1	//0.0008565
-#define TaskOnline2		//0.0010097
+//#define TaskOnline2		//0.0010097
 struct TIP						//Создаем структуру для хранения "оконечностей змей"
 {
 	int value;					//текущее значение
@@ -239,6 +239,7 @@ int main()
 	std::cout << answ << endl;
 #endif // TaskOnline1
 	
+#ifdef TaskOnline2	
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	string patch = "numbers.txt";
@@ -267,7 +268,7 @@ int main()
 	snake.tail.index = 0;										// и "хвост" тоже находятся в первом числе массива
 	snake.tail.value = num_arr[0];								//
 
-	while (snake.head.index<LEN_ARR)							// пока не дойдем до конца массива
+	while (snake.head.index < LEN_ARR)							// пока не дойдем до конца массива
 	{
 		if (snake.len_snake < LEN_SERIES)						//"змея" растет
 			is_answ = snale_growth(&snake, num_arr);
@@ -280,5 +281,7 @@ int main()
 			snake_jump(&snake, num_arr);
 	}
 	std::cout << answ << endl;
+#endif // TaskOnline2	
+
 	return 0;
 }
